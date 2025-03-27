@@ -68,12 +68,12 @@ PRIMER:
 
 	let { prvaSpremenljivka, drugaSpremenljivka}: Props = $props();
 </script>
-```
 
 <div>
     <h1>{prvaSpremenljivka}</h1>
     <h2>{drugaSpremenljivka}</h2>
 </div>
+```
 
 2️⃣ Uporaba komponent
 V src/routes/+page.svelte:
