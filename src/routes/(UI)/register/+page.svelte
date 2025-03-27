@@ -5,7 +5,7 @@
 
 <section class="bgImg bg-dabBrown grid h-screen min-h-max place-items-center bg-cover p-[5vw]">
 	<form
-		action=""
+		method="POST"
 		class="bg-dabBrown border-blueNyanza flex w-full flex-col gap-4 rounded-2xl border-2 p-8 md:w-max"
 	>
 		<h1 class="text-blueNyanza text-center text-4xl font-bold">REGISTER</h1>
