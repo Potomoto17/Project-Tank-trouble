@@ -58,6 +58,7 @@ Pot: src/lib/Example.svelte:
 
 PRIMER:
 
+````ts
 <script lang="ts">
     //Ker uporabljamo typescript potrebujemo tudi tipe spremenljivk:
 	interface Props {
@@ -67,12 +68,12 @@ PRIMER:
 
 	let { prvaSpremenljivka, drugaSpremenljivka}: Props = $props();
 </script>
+---
 
 <div>
     <h1>{prvaSpremenljivka}</h1>
     <h2>{drugaSpremenljivka}</h2>
 </div>
-
 2️⃣ Uporaba komponent
 V src/routes/+page.svelte:
 
@@ -119,7 +120,7 @@ V `src/lib/Game.svelte`:
 </script>
 
 <div id="game-container"></div>
-```
+````
 
 Phaser se nahaja v `src/lib/Game.svelte`.
 
