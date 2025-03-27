@@ -1,18 +1,30 @@
+<script lang="ts">
+	import Input from '$lib/components/Input.svelte';
+	import MainBtn from '$lib/components/MainBtn.svelte';
+</script>
+
 <section class="bgImg bg-dabBrown grid h-screen min-h-max place-items-center bg-cover p-[5vw]">
 	<form
 		action=""
-		class="bg-dabBrown border-blueNyanza flex w-full flex-col rounded-2xl border-2 p-8 md:w-max"
+		class="bg-dabBrown border-blueNyanza flex w-full flex-col gap-4 rounded-2xl border-2 p-8 md:w-max"
 	>
-		<div class="flex flex-col items-start justify-center gap-1">
-			<label for="username" class="text-blueNyanza font-bold">Username</label>
-			<input
-				class="bg-blueNyanza w-full rounded-2xl border-2 border-black p-2 text-black md:w-72"
-				type="text"
-				id="username"
-				name="username"
-				placeholder="Username"
+		<h1 class="text-blueNyanza text-center text-4xl font-bold">REGISTER</h1>
+		<div class="flex flex-col gap-2">
+			<Input
+				inputId="email"
+				inputName="Email"
+				inputType="email"
+				inputPlaceholder="yourmail@example.com"
+			/>
+			<Input inputId="password" inputName="Password" inputType="password" inputPlaceholder=" " />
+			<Input
+				inputId="repeatPassword"
+				inputName="Repeat Password"
+				inputType="password"
+				inputPlaceholder=""
 			/>
 		</div>
+		<MainBtn href="/" text="Register" addClass={'mt-4'} />
 	</form>
 </section>
 
