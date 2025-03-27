@@ -49,6 +49,42 @@ Za več poglej: [Tailwind Docs](https://tailwindcss.com/docs/installation/using-
 
 ---
 
+🔥 Uporaba Svelte
+Svelte omogoča ustvarjanje reaktivnih komponent.
+
+1️⃣ Mesto komponent (lahko dodajaš tudi subfolderje za večje funkcionalnosti npr. gumbi gredo pod mapo UI itd.):
+
+Pot: src/lib/Example.svelte:
+
+PRIMER:
+
+<script lang="ts">
+    //Ker uporabljamo typescript potrebujemo tudi tipe spremenljivk:
+	interface Props {
+		prvaSpremenljivka: bool,
+        drugaSpremenljivka: string
+	}
+
+	let { prvaSpremenljivka, drugaSpremenljivka}: Props = $props();
+</script>
+
+<div>
+    <h1>{prvaSpremenljivka}</h1>
+    <h2>{drugaSpremenljivka}</h2>
+</div>
+
+2️⃣ Uporaba komponent
+V src/routes/+page.svelte:
+
+<script>
+    import Example from '../lib/Example.svelte';
+</script>
+
+//sedaj lahko dodaš dejanske vrednosti v spremenljivke
+<Example prvaSpremenljivka={true} drugaSpremenljivka="test"/>
+
+Za več info poglej: [Svelte/Sveltekit Docs](https://svelte.dev/docs).
+
 ## 🎮 Uporaba Phaser.js
 
 Phaser je integriran kot Svelte komponenta.
@@ -58,13 +94,12 @@ Phaser je integriran kot Svelte komponenta.
 V `src/lib/Game.svelte`:
 
 ```svelte
-<script>
-	import { onMount } from 'svelte';
+<script lang="ts">
 	import Phaser from 'phaser';
 
 	let game;
 
-	onMount(() => {
+	$effect$(() => {
 		const config = {
 			type: Phaser.AUTO,
 			width: 800,
@@ -95,6 +130,9 @@ Phaser se nahaja v `src/lib/Game.svelte`.
 ### 1️⃣ Povezava na WebSocket strežnik
 
 V `src/stores/websocket.js`:
+
+Novi svelte ima to mogoče malo drugače, zato bodo potrebne prilagoditve in vpogled v docs:
+[Svelte store Docs](https://svelte.dev/docs/svelte/svelte-store).
 
 ```js
 import { writable } from 'svelte/store';
