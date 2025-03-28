@@ -1,4 +1,6 @@
 <script lang="ts">
+	import MainBtn from '$lib/components/MainBtn.svelte';
+
 	let { children } = $props();
 </script>
 

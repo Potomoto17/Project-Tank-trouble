@@ -13,10 +13,6 @@
 	function togglePasswordVisibility() {
 		canShowPassword = !canShowPassword;
 	}
-
-	$effect(() => {
-		console.log(canShowPassword);
-	});
 </script>
 
 <div class="relative flex flex-col items-start justify-center gap-1">
@@ -41,7 +37,7 @@
 			>
 				{#if canShowPassword}
 					👁️
-				{:else if !canShowPassword}
+				{:else}
 					👁️‍🗨️
 				{/if}
 			</button>

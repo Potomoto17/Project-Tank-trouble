@@ -10,6 +10,6 @@
 
 <a
 	{href}
-	class="bg-blueKeppel cursor-pointer rounded-2xl p-2 text-center text-lg font-bold text-black uppercase transition-all duration-150 ease-in-out hover:opacity-80 {addClass}"
+	class="bg-blueKeppel border-blueNyanza cursor-pointer rounded-2xl border-2 p-2 text-center text-lg font-bold text-black uppercase transition-all duration-150 ease-in-out hover:opacity-80 {addClass}"
 	>{text}</a
 >
