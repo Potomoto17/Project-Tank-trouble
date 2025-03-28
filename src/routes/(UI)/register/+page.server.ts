@@ -1,4 +1,16 @@
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
+
+let route: string = 'http://localhost';
+let port: number = 8000;
+let endpoint: string = `${route}:${port}`;
+
+export const load: PageServerLoad = async ({ fetch }) => {
+	const response = await fetch(endpoint);
+
+	console.log(response);
+
+	return {};
+};
 
 export const actions: Actions = {
 	register: async ({ request }) => {
@@ -16,7 +28,7 @@ export const actions: Actions = {
 				return { success: false, error: 'Passwords do not match' };
 			}
 
-			const response = await fetch('https://yourserver.com/api/register', {
+			const response = await fetch(endpoint, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ email, password })
