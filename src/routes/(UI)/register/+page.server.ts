@@ -10,13 +10,13 @@ export const actions: Actions = {
 			const data = await request.formData();
 			const username = data.get('username');
 			const password = data.get('password');
-			const repPassword = data.get('repeatPassword');
+			const newpass = data.get('newpass');
 
-			if (!username || !password || !repPassword) {
+			if (!username || !password || !newpass) {
 				return { success: false, error: 'All fields are required' };
 			}
 
-			if (password !== repPassword) {
+			if (password !== newpass) {
 				return { success: false, error: 'Passwords do not match' };
 			}
 

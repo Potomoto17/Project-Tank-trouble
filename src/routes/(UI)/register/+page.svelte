@@ -21,6 +21,7 @@
 			/>
 		</div>
 		<MainBtn type="submit" text="Register" addClass={'mt-4'} />
+		<MainBtn href="/login" text="Login" addClass={'mt-4'} />
 	</form>
 </section>
 
