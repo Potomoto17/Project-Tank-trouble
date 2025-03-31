@@ -1,4 +1,4 @@
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
 
 let route: string = 'http://localhost';
 let port: number = 8001;
@@ -28,16 +28,12 @@ export const actions: Actions = {
 				body: JSON.stringify({ email, password })
 			});
 
-			const responseText = await response.text(); // Read response as text
-
-			console.log('Server response status:', response.status);
-			console.log('Server response body:', responseText);
+			const responseText = await response.text();
 
 			if (!response.ok) {
 				return { success: false, error: `Failed to register: ${response.statusText}` };
 			}
 
-			// Try parsing JSON (in case response is not valid JSON, catch the error)
 			try {
 				const responseData = JSON.parse(responseText);
 				return { success: true, data: responseData };

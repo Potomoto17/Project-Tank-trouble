@@ -5,17 +5,13 @@
 
 <section class="bgImg bg-dabBrown grid h-screen min-h-max place-items-center bg-cover p-[5vw]">
 	<form
+		action="?/register"
 		method="POST"
 		class="bg-dabBrown border-blueNyanza flex w-full flex-col gap-4 rounded-2xl border-2 p-8 md:w-max"
 	>
 		<h1 class="text-blueNyanza text-center text-4xl font-bold">REGISTER</h1>
 		<div class="flex flex-col gap-2">
-			<Input
-				inputId="email"
-				inputName="Email"
-				inputType="email"
-				inputPlaceholder="yourmail@example.com"
-			/>
+			<Input inputId="username" inputName="Username" inputType="username" />
 			<Input inputId="password" inputName="Password" inputType="password" inputPlaceholder=" " />
 			<Input
 				inputId="repeatPassword"
@@ -24,7 +20,7 @@
 				inputPlaceholder=""
 			/>
 		</div>
-		<MainBtn href="/" text="Register" addClass={'mt-4'} />
+		<MainBtn type="submit" text="Register" addClass={'mt-4'} />
 	</form>
 </section>
 

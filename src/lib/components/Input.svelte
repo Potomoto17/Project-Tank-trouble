@@ -3,7 +3,7 @@
 		inputId: string;
 		inputName: string;
 		inputType: string;
-		inputPlaceholder: string;
+		inputPlaceholder?: string;
 	};
 
 	let { inputId, inputName, inputType, inputPlaceholder }: props = $props();
