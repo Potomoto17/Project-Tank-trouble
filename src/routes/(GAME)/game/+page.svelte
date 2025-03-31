@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Game from '$lib/components/Game.svelte';
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 
@@ -56,7 +57,7 @@
 				</div>
 			</div>
 		</header>
-		<div>put phhaser game here</div>
+		<Game />
 	</div>
 </section>
 
