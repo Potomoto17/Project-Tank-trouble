@@ -7,7 +7,12 @@ let endpoint: string = `${route}:${port}`;
 export const load: PageServerLoad = async ({ fetch }) => {
 	const response = await fetch(endpoint);
 
-	console.log(response);
+	if (!response.ok) {
+		throw new Error('Failed to fetch data from the server');
+	}
+	const data = await response.json();
+
+	console.log(data);
 
 	return {};
 };
