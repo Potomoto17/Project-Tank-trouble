@@ -28,7 +28,8 @@
 	<button
 		onclick={toggleAside}
 		class:opacity-0={isAsideOpen}
-		class="bg-hunterGreen hover:bg-opacity-90 absolute top-6 left-0 z-10 cursor-pointer rounded-r-lg p-2 text-2xl text-white transition-all duration-150"
+		class:hidden={isAsideOpen}
+		class="bg-hunterGreen hover:bg-opacity-90 absolute top-5 left-0 z-10 cursor-pointer rounded-r-2xl p-4 text-2xl text-white transition-all duration-150"
 	>
 		&RightArrowLeftArrow;
 	</button>
@@ -38,7 +39,7 @@
 		class:w-[100vw]={!isAsideOpen}
 		class:w-[75vw]={isAsideOpen}
 	>
-		<header class="absolute top-0 right-0 left-0 p-4">
+		<header class="absolute top-0 right-0 left-0 p-4" class:pl-16={!isAsideOpen}>
 			<div class="flex gap-4 text-xl font-bold text-white">
 				<div class="bg-hunterGreen flex flex-1 items-center justify-between gap-2 rounded-2xl p-4">
 					<p>PLAYER 1</p>
@@ -55,7 +56,7 @@
 				</div>
 			</div>
 		</header>
-		<div class="mainUiasdasdasdasdasd"></div>
+		<div>put phhaser game here</div>
 	</div>
 </section>
 
