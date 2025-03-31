@@ -13,6 +13,10 @@
 	function togglePasswordVisibility() {
 		canShowPassword = !canShowPassword;
 	}
+
+	function parseName() {
+		return inputName.replaceAll(' ', '');
+	}
 </script>
 
 <div class="relative flex flex-col items-start justify-center gap-1">

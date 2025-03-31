@@ -1,6 +1,11 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import Input from '$lib/components/Input.svelte';
 	import MainBtn from '$lib/components/MainBtn.svelte';
+	import type { PageProps } from './$types';
+	import { goto } from '$app/navigation';
+
+	let { form }: PageProps = $props();
 </script>
 
 <section class="bgImg bg-dabBrown grid h-screen min-h-max place-items-center bg-cover p-[5vw]">
@@ -14,13 +19,15 @@
 			<Input inputId="username" inputName="Username" inputType="username" />
 			<Input inputId="password" inputName="Password" inputType="password" inputPlaceholder=" " />
 			<Input
-				inputId="repeatPassword"
-				inputName="Repeat Password"
+				inputId="repeatpassword"
+				inputName="repeatpassword"
 				inputType="password"
 				inputPlaceholder=""
 			/>
 		</div>
 		<MainBtn type="submit" text="Register" addClass={'mt-4'} />
+		<MainBtn href="/login" text="Login" addClass={'mt-4'} />
+		{#if form?.fieldMissing}<p>izpolnite vsa polja</p>{/if}
 	</form>
 </section>
 
