@@ -2,22 +2,17 @@ import type { Actions } from './$types';
 
 let route: string = 'http://localhost';
 let port: number = 8001;
-let endpoint: string = `${route}:${port}/user/register`;
+let endpoint: string = `${route}:${port}/user/login`;
 
 export const actions: Actions = {
-	register: async ({ request }) => {
+	login: async ({ request }) => {
 		try {
 			const data = await request.formData();
 			const username = data.get('username');
 			const password = data.get('password');
-			const repPassword = data.get('repeatPassword');
 
-			if (!username || !password || !repPassword) {
+			if (!username || !password) {
 				return { success: false, error: 'All fields are required' };
-			}
-
-			if (password !== repPassword) {
-				return { success: false, error: 'Passwords do not match' };
 			}
 
 			console.log('Sending request to:', endpoint);
@@ -30,8 +25,11 @@ export const actions: Actions = {
 
 			const responseText = await response.text();
 
+			console.log('Server response status:', response.status);
+			console.log('Server response body:', responseText);
+
 			if (!response.ok) {
-				return { success: false, error: `Failed to register: ${response.statusText}` };
+				return { success: false, error: `Failed to login: ${response.statusText}` };
 			}
 
 			try {
