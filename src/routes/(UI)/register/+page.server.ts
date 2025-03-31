@@ -1,26 +1,27 @@
 import type { Actions } from './$types';
+import { fail, redirect } from '@sveltejs/kit';
 
 let route: string = 'http://localhost';
 let port: number = 8001;
 let endpoint: string = `${route}:${port}/user/register`;
 
 export const actions: Actions = {
-	register: async ({ request }) => {
+	register: async ({ request, cookies }) => {
 		try {
 			const data = await request.formData();
-			const username = data.get('username');
-			const password = data.get('password');
-			const newpass = data.get('newpass');
+			const username = data.get('username')?.toString();
+			const password = data.get('password')?.toString();
+			const repeatPassword = data.get('repeatpassword')?.toString();
 
-			if (!username || !password || !newpass) {
-				return { success: false, error: 'All fields are required' };
+			// ✅ Preverimo, če so vsa polja izpolnjena
+			if (!username || !password || !repeatPassword) {
+				return fail(400, { fieldMissing: true });
 			}
 
-			if (password !== newpass) {
-				return { success: false, error: 'Passwords do not match' };
+			// ✅ Preverimo, ali se gesli ujemata
+			if (password !== repeatPassword) {
+				return fail(400, { passwordMismatch: true });
 			}
-
-			console.log('Sending request to:', endpoint);
 
 			const response = await fetch(endpoint, {
 				method: 'POST',
@@ -29,20 +30,28 @@ export const actions: Actions = {
 			});
 
 			const responseText = await response.text();
+			const responseData = JSON.parse(responseText);
 
+			// Logiraj odgovor za debugging
+			console.log('Server Response:', responseData);
+
+			// Če je prišlo do napake pri registraciji
 			if (!response.ok) {
-				return { success: false, error: `Failed to register: ${response.statusText}` };
+				return fail(400, { error: `Failed to register: ${response.statusText}` });
 			}
 
-			try {
-				const responseData = JSON.parse(responseText);
-				return { success: true, data: responseData };
-			} catch (jsonError) {
-				return { success: false, error: 'Invalid JSON response from server' };
-			}
+			// ✅ Shranimo user_id v cookies
+			cookies.set('user_id', responseData.user_id.toString(), {
+				path: '/',
+				httpOnly: true,
+				sameSite: 'strict'
+			});
 		} catch (error) {
 			console.error('Fetch error:', error);
-			return { success: false, error: 'Something went wrong' };
+			return fail(500, { error: 'Something went wrong' });
 		}
+
+		// ✅ Preusmeritev na /login po uspešni registraciji
+		redirect(303, '/login');
 	}
 };

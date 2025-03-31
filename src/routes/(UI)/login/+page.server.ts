@@ -1,4 +1,5 @@
 import type { Actions } from './$types';
+import { fail, redirect } from '@sveltejs/kit';
 
 let route: string = 'http://localhost';
 let port: number = 8001;
@@ -8,14 +9,13 @@ export const actions: Actions = {
 	login: async ({ request }) => {
 		try {
 			const data = await request.formData();
-			const username = data.get('username');
-			const password = data.get('password');
+			const username = data.get('username')?.toString();
+			const password = data.get('password')?.toString();
 
+			// ✅ Preverimo, če so vsa polja izpolnjena
 			if (!username || !password) {
-				return { success: false, error: 'All fields are required' };
+				return fail(400, { fieldMissing: true });
 			}
-
-			console.log('Sending request to:', endpoint);
 
 			const response = await fetch(endpoint, {
 				method: 'POST',
@@ -24,23 +24,21 @@ export const actions: Actions = {
 			});
 
 			const responseText = await response.text();
+			const responseData = JSON.parse(responseText);
 
-			console.log('Server response status:', response.status);
-			console.log('Server response body:', responseText);
+			// Logiraj odgovor za debugging
+			console.log('Server Response:', responseData);
 
+			// Če je prišlo do napake pri registraciji
 			if (!response.ok) {
-				return { success: false, error: `Failed to login: ${response.statusText}` };
-			}
-
-			try {
-				const responseData = JSON.parse(responseText);
-				return { success: true, data: responseData };
-			} catch (jsonError) {
-				return { success: false, error: 'Invalid JSON response from server' };
+				return fail(400, { error: `Failed to register: ${response.statusText}` });
 			}
 		} catch (error) {
 			console.error('Fetch error:', error);
-			return { success: false, error: 'Something went wrong' };
+			return fail(500, { error: 'Something went wrong' });
 		}
+
+		// ✅ Preusmeritev na /login po uspešni registraciji
+		throw redirect(303, '/game');
 	}
 };
