@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 export default class MainScene extends Phaser.Scene {
 	private tank!: Phaser.GameObjects.Sprite;
 
@@ -6,7 +8,7 @@ export default class MainScene extends Phaser.Scene {
 	}
 
 	preload() {
-		this.load.image('tank', './src/lib/assets/game/sprites/tank.png');
+		this.load.image('tank', './src/lib/assets/game/sprites/tanks/tank.png');
 	}
 
 	create() {
