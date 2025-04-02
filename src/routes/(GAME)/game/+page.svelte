@@ -15,8 +15,6 @@
 		class="bg-dabBrown2 text-blueNyanza h-full overflow-hidden py-8 font-bold transition-all duration-150 ease-in-out"
 		class:w-[0vw]={!isAsideOpen}
 		class:w-[25vw]={isAsideOpen}
-		class:opacity-0={!isAsideOpen}
-		class:opacity-100={isAsideOpen}
 		class:p-8={isAsideOpen}
 		class:py-0={!isAsideOpen}
 	>

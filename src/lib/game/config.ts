@@ -5,6 +5,7 @@ export const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.AUTO,
 	width: 800,
 	height: 800,
+	backgroundColor: '#CAF7E2',
 	physics: {
 		default: 'arcade',
 		arcade: { gravity: { x: 0, y: 0 } }
